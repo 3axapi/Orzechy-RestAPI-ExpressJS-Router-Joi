@@ -1,3 +1,42 @@
-{
-    
-}
+[ 
+ {
+    "title": "orzechy włoskie",
+    "price": 32.5,
+    "id": 1
+ },
+ {
+    "title": "orzechy laskowe",
+    "price": 7.5,
+    "id": 2
+ },
+ {
+    "title": "orzechy makadamia",
+    "price": 98.9,
+    "id": 3
+ },
+ {
+    "title": "orzechy pistacjowe",
+    "price": 60,
+    "id": 4
+ },
+ {
+    "title": "orzeszki arachidowe",
+    "price": 14.5,
+    "id": 5
+ },
+ {
+    "title": "orzechy nerkowca",
+    "price": 54.9,
+    "id": 6
+ },
+ {
+    "title": "orzechy brazylijskie",
+    "price": 37.5,
+    "id": 7
+ },
+ {
+    "title": "orzechy pekan",
+    "price": 78.35,
+    "id": 8
+ }
+]
