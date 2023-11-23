@@ -4,19 +4,31 @@ const orzechy = require("./orzechyDB");
 
 function listOrzechy () {
     return parseOrzech(orzechy);
-} // dostać wszyskie orzechy
+} // dostać wszyskie orzechy z jsona
 
 function getOrzech (idOrzech) {
     let id = +idOrzech;
-    let orzech = orzechy.find(o => o.id === id);
+    let orzech = orzechy.find(o => o.id === id); // o — orzech
     return parseOrzech(orzech);
-} // dostać konkretny orzech ze wskazanym id
+} // dostać konkretny orzech ze wskazanym id z jsona
 
-function addOrzech () {
-    
-}
+function addOrzech (orzech) {
+    let lastOrzech = orzechy[orzechy.length - 1];
+    orzech.id = lastOrzech ? lastOrzech.id + 1 : 1;
+    orzechy.push(orzech);
 
-function deleteOrzech (idOrzech) {}
+    saveOrzechy();
+    return getOrzech(orzech.id);
+} // dodać orzech do json
+
+function deleteOrzech (idOrzech) {
+    let id = +idOrzech;
+    let orzech = orzechy.find(o => o.id === id); // o — orzech
+    orzechy = orzechy.filter(o => o.id !== orzech); // o — orzech
+
+    saveOrzechy();
+    return orzech;
+} // usunąć orzech z jsona
 
 function parseOrzech (obj) {
     return JSON.parse(JSON.stringify(obj));
@@ -31,9 +43,11 @@ function saveOrzechy () {
             else console.log("Plik został zapisany");
         }
     );
-} // zapisać zmiany w json
+} // funkcja zapisywania zmian w json plik
 
 module.exports = {
     list: listOrzechy,
-    get: getOrzech
+    get: getOrzech,
+    add: addOrzech,
+    delete: deleteOrzech
 };
