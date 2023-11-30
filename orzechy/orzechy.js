@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const orzechy = require("./orzechyDB");
+const orzechy = require("./orzechyBD");
 
 function listOrzechy () {
     return parseOrzech(orzechy);
@@ -11,6 +11,19 @@ function getOrzech (idOrzech) {
     let orzech = orzechy.find(o => o.id === id); // o — orzech
     return parseOrzech(orzech);
 } // dostać konkretny orzech ze wskazanym id z jsona
+
+function editOrzech (idOrzech, bodyOrzech) {
+    let id = +idOrzech;
+    let orzech = orzechy.find(o => o.id === id); // o — orzech
+    
+    orzech.title = bodyOrzech.title;
+    orzech.tree = bodyOrzech.tree;
+    orzech.protein = bodyOrzech.protein;
+    orzech.price = bodyOrzech.price;
+
+    saveOrzechy();
+    return getOrzech(orzech.id);
+}
 
 function addOrzech (orzech) {
     let lastOrzech = orzechy[orzechy.length - 1];
@@ -49,5 +62,6 @@ module.exports = {
     list: listOrzechy,
     get: getOrzech,
     add: addOrzech,
+    edit: editOrzech,
     delete: deleteOrzech
 };
