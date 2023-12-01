@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const orzechy = require("./orzechyBD");
+let orzechy = require("./orzechyBD");
 
 function listOrzechy () {
     return parseOrzech(orzechy);
@@ -37,7 +37,7 @@ function addOrzech (orzech) {
 function deleteOrzech (idOrzech) {
     let id = +idOrzech;
     let orzech = orzechy.find(o => o.id === id); // o — orzech
-    orzechy = orzechy.filter(o => o.id !== orzech); // o — orzech
+    orzechy = orzechy.filter(o => o.id !== orzech.id); // o — orzech
 
     saveOrzechy();
     return orzech;
